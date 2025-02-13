@@ -35,16 +35,24 @@
 }
 
 .lista-menu {
-    display: none;
+    display: block;
     position: absolute;
-    /*Permite que movimente o elemento em relação ao elemento pai diferente de static*/
     top: 100%;
     width: 70vw;
+    visibility: hidden;
+    transform: translateX(-70vw);
+    transition: transform 0.5s ease, .5s ease;
+    pointer-events: none;
+    /* Impede interação quando invisível */
 }
 
 /*Caso o checkbox esteja preenchido o combinador "~" ira buscar a classe 'lista-menu' e mudar para 'display: block'*/
 .container__botao:checked~.lista-menu {
-    display: block;
+    /* display: block; */
+    visibility: visible;
+    transform: translateX(0);
+    pointer-events: auto;
+    /* Permite interação quando visível */
 }
 
 .lista-menu__titulo,
@@ -119,6 +127,9 @@
     .opcoes__botao:checked~.lista-menu {
         display: block;
         width: auto;
+        visibility: visible;
+        transform: translateX(0);
+        pointer-events: auto;
     }
 
     .opcoes__botao {
@@ -132,6 +143,19 @@
 
     .opcoes__item {
         padding: 2em 1em;
+    }
+
+    .lista-menu {
+        display: block;
+        /* Alterado de 'none' */
+        position: absolute;
+        top: 100%;
+        width: auto;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: transform 0.5s ease, .5s ease;
+        pointer-events: none;
+        /* Impede interação quando invisível */
     }
 
     .lista-menu__item:hover {
